@@ -1,0 +1,94 @@
+
+
+get unique then have them select categories
+        
+var uniquecategories = [];
+for(var i = 0; i < docs.length; i++){
+    var categories = docs[i].categories;
+    for(var j = 0; j < categories.length; j++){ // Test for case where categories is empty
+        if(!uniquecategories.includes(categories[j].name)){
+            uniquecategories.push(categories[j].name);
+        }
+    }
+}
+console.log(uniquecategories);
+
+const sampleData = [
+    {
+        "_id": "5c9bf1ea5d91da0d8a2785ca",
+        "date": "2019-03-27T00:00:00.000Z",
+        "username": "admin",
+        "categories": [
+            {
+                "_id": "5c9d646d9faacc0f120d98e1",
+                "name": "water",
+                "spent": 660
+            },
+            {
+                "_id": "5c9da70734b7c01a489e529c",
+                "name": "chips",
+                "spent": 2000
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": "5c9da57060dbb117d7d54316",
+        "date": "2019-03-28T00:00:00.000Z",
+        "username": "admin",
+        "categories": [
+            {
+                "_id": "5c9da57060dbb117d7d54317",
+                "name": "chips",
+                "spent": 60
+            }
+        ],
+        "__v": 2
+    },
+    {
+        "_id": "5ca185c16782f508c07cf6ea",
+        "date": "2019-03-29T00:00:00.000Z",
+        "username": "admin",
+        "categories": [
+            {
+                "_id": "5ca185c16782f508c07cf6eb",
+                "name": "chips",
+                "spent": 20
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": "5ca186196782f508c07cf6ec",
+        "date": "2019-03-30T00:00:00.000Z",
+        "username": "admin",
+        "categories": [
+            {
+                "_id": "5ca186196782f508c07cf6ed",
+                "name": "chips",
+                "spent": 10
+            }
+        ],
+        "__v": 0
+    }
+]
+var target = 'water';
+
+            var parseddata = sampleData.map(element => {
+              for(var i = 0; i < element.categories.length; i++){
+                if (element.categories[i].name == target){
+                  return {x: new Date(element.date), y: element.categories[i].spent};
+                }
+                else{
+                  return {x: new Date(element.date), y: null};
+                }
+              }
+            });
+
+
+
+addCategory(category, price){
+    post request 
+
+
+}

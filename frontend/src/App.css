@@ -1,0 +1,35 @@
+.budget-content{
+  text-align: center;
+}
+.usermain{
+  padding-top: 10px;
+}
+body{
+  background-color: #e3f2fd
+}
+nav{
+  padding: 0 10%;
+}
+h3 {
+  background-color: #448aff;
+  color: white;
+  font-family: 'PT Sans Narrow', sans-serif;
+}
+hr{
+  margin: 15px auto;
+  width: 75%;
+
+}
+#signature{
+  color: black
+}
+li.tab a{
+  color: #bbdefb  !important
+}
+li.tab a:hover{
+  color: white !important
+}
+.datepicker{
+  border-bottom: 3px solid #90caf9 !important;
+  text-align: center !important
+}
