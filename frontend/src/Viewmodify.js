@@ -16,6 +16,7 @@ class Modifyadd extends  Component {
     this.handleUpdateInput = this.handleUpdateInput.bind(this);
     this.handleUpdateClick = this.handleUpdateClick.bind(this);
     this.handleNew = this.handleNew.bind(this);
+    this.serialWrapper = this.serialWrapper.bind(this);
   }
   onDateChange = function(date){
     this.setState({startdate: moment(date).format('YYYY-MM-DD')});
@@ -47,8 +48,33 @@ class Modifyadd extends  Component {
     this.setState({newvalues: newvalues});
     console.log(this.state.newvalues);
   }
-  handleUpdateClick = function(e){ //do multiple requests with all
-    console.log("submitted", this.state.newvalues);
+  serialWrapper = function (i, updates){ //Recursive function to perform asynchronous calls - add promises
+      if(i == updates.length){
+        //do stuff
+        return;
+      }
+      axios.post("https://serverforstuff-adrfigu966.c9users.io/updatecategory",
+      {date: this.state.startdate, name: updates[i].name, spent: updates[i].spent},
+      {withCredentials: true})
+      .then(response => {
+        console.log("Sent: ", updates[i]);
+        i++;
+        this.serialWrapper(i, updates);
+      }).catch(error => {
+        console.log(error);
+      });
+  }
+  handleUpdateClick = function(e){ 
+    var updates = [];
+    for(var name in this.state.newvalues){
+      if(this.state.newvalues[name] != ''){
+        updates.push({name: name, spent: this.state.newvalues[name]});
+      }
+    }
+    console.log(updates);
+    this.serialWrapper(0, updates);
+    console.log("DONE!");
+    
   }
   handleNew = function(e){
     var which = e.target.getAttribute("id").split("-")[0];
